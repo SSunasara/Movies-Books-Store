@@ -1,0 +1,56 @@
+<div class="container">
+    <ng-container *ngIf="details != null; else notFound">
+        <div class="row details">
+            <div class="col-md-4 col-12">
+                <img class="banner" [src]="details.Image" [alt]="details.Name">
+            </div>
+            <div class="col-md-8 col-12 text">
+                <h1>{{ details.Name }}</h1>
+                <h3>{{ details.Price | currency:'INR' }}</h3>
+                <p>Summery:</p>
+                <p class="desc">{{ details.Preview}}</p>
+                <div class="row mt-4">
+                    <ng-container *ngIf="details.Category === 'Movie'; else BookTemplate">
+                        <div class="col-6 part">
+                            <p><b>Date Of Release:</b> {{ details.ReleaseDate }}</p>
+                            <p><b>Directed By:</b> {{ details.Director }}</p>
+                            <p><b>IMDB:</b> {{ details.Ratings | number: '1.1-2' }} <i class="fa fa-star"
+                                    style="color: darkgoldenrod;"></i></p>
+                        </div>
+                        <div class="col-6">
+                            <p><b>Cast and Crew</b></p>
+                            <ul>
+                                <li *ngFor="let name of details.Cast">{{name}}</li>
+                            </ul>
+                        </div>
+                    </ng-container>
+                    <ng-template #BookTemplate>
+                        <div class="col-6 part">
+                            <p><b>Year Publishede:</b> {{ details.ReleaseDate }}</p>
+                            <p><b>Written By:</b> {{ details.Writer }}</p>
+                            <p><b>GoodReads:</b> {{ details.Ratings | number: '1.1-2' }} <i class="fa fa-star"
+                                    style="color: darkgoldenrod;"></i></p>
+                        </div>
+                        <div class="col-6">
+                            <p><b>Pages: </b> {{details.Pages}} </p>
+                        </div>
+                    </ng-template>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <button class="btn btn-success btn-lg" (click)="addToCart(details.id)">Add to cart <i class="fa fa-shopping-cart"></i></button>
+                        <button class="btn btn-outline-danger btn-lg">Add to wishlist <i
+                                class="fa fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-template #notFound>
+        <div class="d-flex justify-content-center align-items-center flex-column" style="height: calc(100vh - 56px)">
+            <img src="https://img.icons8.com/plasticine/100/000000/road-closure.png" alt="Not Found Img" />
+            <h2 class="mt-5">OOps, Looks like Something went wrong</h2>
+            <a class="btn btn-outline-primary mt-3" [routerLink]="['']">Click here to go back</a>
+        </div>
+    </ng-template>
+</div>

@@ -1,0 +1,185 @@
+{
+  "Products": [
+    {
+      "id": 1,
+      "Category": "Book",
+      "Name": "India After Gandhi",
+      "Genre": "Historical fiction",
+      "ReleaseDate": 2008,
+      "Price": 568,
+      "Quantity": 4,
+      "Preview": "Ramachandra Guha’s hugely acclaimed book tells the full story - the pain and the struggle, the humiliations and the glories - of the world’s largest and least likely democracy.",
+      "Writer": "Ramachandra Guha",
+      "Ratings": 4,
+      "Pages": 960,
+      "Image": "https://images-na.ssl-images-amazon.com/images/I/A1XEQ4aLnuL.jpg"
+    },
+    {
+      "id": 2,
+      "Category": "Book",
+      "Name": "An Era of Darkness",
+      "Genre": "Historical fiction",
+      "ReleaseDate": 2016,
+      "Price": 340,
+      "Quantity": 3,
+      "Preview": "In 1930, the American historian and philosopher Will Durant wrote that Britain’s ‘conscious and deliberate bleeding of India… [was the] greatest crime in all history’. He was not the only one to denounce the rapacity and cruelty of British rule, and his assessment was not exaggerated. ",
+      "Writer": "Shashi Tharoor ",
+      "Ratings": 4,
+      "Pages": 360,
+      "Image": "https://images-na.ssl-images-amazon.com/images/I/91Tu6fhpR6L.jpg"
+    },
+    {
+      "id": 3,
+      "Category": "Book",
+      "Name": "Into Thin Air",
+      "Genre": "Adventure",
+      "ReleaseDate": 1999,
+      "Price": 171,
+      "Quantity": 3,
+      "Preview": "A bank of clouds was assembling on the not-so-distant horizon, but journalist-mountaineer Jon Krakauer, standing on the summit of Mt. Everest, saw nothing that suggested that a murderous storm was bearing down. He was wrong. ",
+      "Writer": "Jon Krakauer",
+      "Ratings": 4,
+      "Pages": 368,
+      "Image": "https://images-na.ssl-images-amazon.com/images/I/81wLeKWJmrL.jpg"
+    },
+    {
+      "id": 4,
+      "Category": "Book",
+      "Name": "Treasure Island",
+      "Genre": "Adventure",
+      "ReleaseDate": 2013,
+      "Price": 199,
+      "Quantity": 3,
+      "Preview": "Think of the high seas and of a buccaneer ship; of a wild seaman with a sea chest full of gold; of Long John Silver; of a buried treasure and of young Jim Hawkins, the boy with the treasure map the key to it all. ",
+      "Writer": "Robert Louis Stevenson ",
+      "Ratings": 3,
+      "Pages": 236,
+      "Image": "https://i.pinimg.com/originals/dc/59/b5/dc59b50a9a2991150f044fb81ffbc79d.jpg"
+    },
+    {
+      "id": 5,
+      "Category": "Book",
+      "Name": "House of Leaves",
+      "Genre": "Horror",
+      "ReleaseDate": 2000,
+      "Price": 500,
+      "Quantity": 3,
+      "Preview": "House of Leaves is the debut novel by American author Mark Z. Danielewski, published in March 2000 by Pantheon Books. A bestseller, it has been translated into a number of languages, and is followed by a companion piece, The Whalestoe Letters.  ",
+      "Writer": "Mark Z. Danielewski",
+      "Ratings": 4,
+      "Pages": 709,
+      "Image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1403889034l/24800.jpg"
+    },
+    {
+      "id": 10,
+      "Category": "Movie",
+      "Name": "Bad Boys for Life",
+      "Preview": "The wife and son of a Mexican drug lord embark on a vengeful quest to kill all those involved in his trial and imprisonment -- including Miami Detective Mike Lowrey. When Mike gets wounded, he teams up with partner Marcus Burnett and AMMO -- a special tactical squad -- to bring the culprits to justice. But the old-school, wisecracking cops must soon learn to get along with their new elite counterparts if they are to take down the vicious cartel that threatens their lives.",
+      "Genre": "Action",
+      "ReleaseDate": "16/01/2020",
+      "Price": 300,
+      "Quantity": 3,
+      "Ratings": 6.7,
+      "Director": "Adil EI Arbi",
+      "Cast": [
+        "Will Smith",
+        "Nicky jam",
+        "Jacob Scipio",
+        "DJ khaled"
+      ],
+      "TrailerLink": "https://www.youtube.com/watch?v=jKCj3XuPG8M",
+      "Image": "https://www.sonypictures.com/sites/default/files/styles/max_560x840/public/title-key-art/badboysforlife_onesheet_1400x2100_sphe.png"
+    },
+    {
+      "id": 21,
+      "Category": "Movie",
+      "Name": "The Martian",
+      "Preview": "When astronauts blast off from the planet Mars, they leave behind Mark Watney (Matt Damon), presumed dead after a fierce storm. With only a meager Price of supplies, the stranded visitor must utilize his wits and spirit to find a way to survive on the hostile planet. Meanwhile, back on Earth, members of NASA and a team of international scientists work tirelessly to bring him home, while his crew mates hatch their own plan for a daring rescue mission.",
+      "Genre": "Adventure",
+      "ReleaseDate": "7/11/2015",
+      "Price": 250,
+      "Quantity": 4,
+      "Ratings": 8,
+      "Director": "Ridley Scott",
+      "Cast": [
+        "Matt Damon",
+        "Kristen Wiig",
+        "Jeff Daniels"
+      ],
+      "TrailerLink": "https://www.youtube.com/watch?v=ej3ioOneTy8",
+      "Image": "https://m.media-amazon.com/images/M/MV5BMTc2MTQ3MDA1Nl5BMl5BanBnXkFtZTgwODA3OTI4NjE@._V1_.jpg"
+    },
+    {
+      "id": 31,
+      "Category": "Movie",
+      "Name": "The Aeronauts",
+      "Preview": "In 1862 headstrong scientist James Glaisher and wealthy young widow Amelia Wren mount a balloon expedition to fly higher than anyone in history. As their perilous ascent reduces their chances of survival, the unlikely duo soon discover things about themselves -- and each other -- that help both of them find their place in the world.",
+      "Genre": "Biography",
+      "ReleaseDate": "07/10/2019",
+      "Price": 350,
+      "Quantity": 4,
+      "Ratings": 6.6,
+      "Director": "Tom Harper",
+      "Cast": [
+        "Felicity Jones",
+        "Vincent Prenez",
+        "Phoebe Fox",
+        "Lewin Lioyd"
+      ],
+      "TrailerLink": "https://www.youtube.com/watch?v=Rm4VnwCtQO8",
+      "Image": "https://m.media-amazon.com/images/M/MV5BMmJkM2M0OTUtNGI3NC00ZTNiLWI4MDUtMGI5MzM1MmQyNTliXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_UY1200_CR90,0,630,1200_AL_.jpg"
+    },
+    {
+      "id": 66,
+      "Category": "Movie",
+      "Name": "Star Wars: Revenge of the Sith",
+      "Preview": "Anakin joins forces with Obi-Wan and sets Palpatine free from the evil clutches of Count Doku. However, he falls prey to Palpatine and the Jedis' mind games and gives into temptation.",
+      "Genre": "Comady",
+      "ReleaseDate": "20/5/2005",
+      "Price": 600,
+      "Quantity": 5,
+      "Ratings": 7.5,
+      "Director": "George Lucas",
+      "Cast": [
+        "Hayden Christensen",
+        "Ewan McGregor",
+        "Natalie Portman"
+      ],
+      "TrailerLink": "https://www.youtube.com/watch?v=Yx6F46-_3Ec",
+      "Image": "https://images-na.ssl-images-amazon.com/images/I/71MKj4j-isL._SY741_.jpg"
+    },
+    {
+      "id": 51,
+      "Category": "Movie",
+      "Name": "Hobbs & Shaw",
+      "Preview": "Brixton Lorr is a cybernetically enhanced soldier who possesses superhuman strength, a brilliant mind and a lethal pathogen that could wipe out half of the world's population. It's now up to hulking lawman Luke Hobbs and lawless operative Deckard Shaw to put aside their past differences and work together to prevent the seemingly indestructible Lorr from destroying humanity.",
+      "Genre": "Action",
+      "ReleaseDate": "22/06/2001",
+      "Price": 250,
+      "Quantity": 3,
+      "Ratings": 6.5,
+      "Director": "David Leitch",
+      "Cast": [
+        "Dwayne Johnson",
+        "Jason Statham",
+        "Hiram Garcia",
+        "Chris Morgan"
+      ],
+      "TrailerLink": "https://www.youtube.com/watch?v=HZ7PAyCDwEg",
+      "Image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ-VY5cjeq-HcRzfG3ofhcEhXFE06-Ev2xohkP9pY3MKNrkgRxp"
+    }
+  ],
+  "Cart": [
+    {
+      "id": 1,
+      "ProductId": 3,
+      "Quantity": 1
+    },
+    {
+      "id": 2,
+      "ProductId": 4,
+      "Quantity": 1
+    }
+  ],
+  "WishList": []
+}
