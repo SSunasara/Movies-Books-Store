@@ -34,4 +34,16 @@ export class CartService {
       catchError(this.handleError)
     );
   } 
+
+  deleteCart(id: number){
+    return this.http.delete<Cart>(this.baseURL + "Cart" + `/${id}`, this.headerOption).pipe(      
+      catchError(this.handleError)
+    );
+  }
+
+  updateCart(item: Cart){
+    return this.http.put<Cart>(this.baseURL + "Cart" + `/${item.id}`, item, this.headerOption).pipe(
+      catchError(this.handleError)
+    );
+  }
 }

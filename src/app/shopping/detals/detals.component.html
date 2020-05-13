@@ -34,13 +34,16 @@
                         <div class="col-6">
                             <p><b>Pages: </b> {{details.Pages}} </p>
                         </div>
-                    </ng-template>
+                    </ng-template>                    
                 </div>
                 <div class="row mt-4">
                     <div class="col-12">
-                        <button class="btn btn-success btn-lg" (click)="addToCart(details.id)">Add to cart <i class="fa fa-shopping-cart"></i></button>
-                        <button class="btn btn-outline-danger btn-lg">Add to wishlist <i
-                                class="fa fa-heart"></i></button>
+                        <button *ngIf="details.Quantity > 0" class="btn btn-success btn-lg mr-5" (click)="addToCart(details.id)">Add to cart <i class="fa fa-shopping-cart"></i></button>
+                        <span *ngIf="details.Quantity == 0" class="btn btn-dark btn-lg mr-5">Out Of Stoke</span>
+                        <button class="btn btn-outline-danger btn-lg" (click)="addToWishlist(details.id)">Add to wishlist <i class="fa fa-heart"></i></button>
+                        <p *ngIf="details.Quantity < 4 && details.Quantity > 0" class="text-danger font-weight-bold mt-3">
+                            Hurry up Only few left!!!!
+                        </p>
                     </div>
                 </div>
             </div>

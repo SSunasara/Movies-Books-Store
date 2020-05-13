@@ -2,9 +2,8 @@
     <div class="row">
         <div class="col-lg-3 col-md-4 col-12" *ngFor="let item of Products">
             <div class="cards">
-                <div class="cards-data" (click)="goToDetails(item.id)">
-                    <div class="imagediv">
-                        <span class="fav"><i class="fa fa-heart"></i></span>
+                <div class="cards-data mb-2" (click)="goToDetails(item.id)">
+                    <div class="imagediv">                        
                         <img [src]="item.Image" [alt]="item.Name">
                     </div>
                     <h3>{{item.Name}}</h3>
@@ -16,10 +15,15 @@
                     </ng-template>
 
                     <p>{{item.Price | currency:'INR' }}</p>
+                    <span *ngIf="item.Quantity < 4 && item.Quantity > 0" class="text-danger font-weight-bold">
+                        Hurry up Only few left!!!!
+                    </span><br/>
                 </div>
-                <div class="cards-btn">
-                    <button class="btn btn-success btn-block" (click)="addToCart(item.id)">Add to cart <i
-                            class="fa fa-shopping-cart"></i></button>
+                <div class="cards-btn d-flex">                
+                        <button *ngIf="item.Quantity > 0" class="btn btn-success btn-block" (click)="addToCart(item.id)">Add to cart <i
+                            class="fa fa-shopping-cart"></i></button>                                       
+                        <span *ngIf="item.Quantity == 0" class="btn btn-dark btn-block">Out Of Stoke</span>                    
+                    <span class="fav" (click)="addToWishlist(item.id)" ><i class="fa fa-heart"></i></span>
                 </div>
             </div>
         </div>

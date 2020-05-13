@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Product } from './../../shared/interfaces/product';
 import { Cart } from './../../shared/interfaces/cart';
@@ -12,29 +13,51 @@ import { Component, OnInit } from '@angular/core';
 export class CartComponent implements OnInit {
 
   carts: Cart[];
-  products: Product[] = [];
-  total: number = 0;
-  constructor(private cartService: CartService, private productService: ProductService) { }
+  dispcartlist: Dispcart[] = [];
+  dispcart: Dispcart;
+  constructor(
+    private cartService: CartService, 
+    private productService: ProductService, 
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.carts = [];
+    this.dispcartlist = [];
     this.getCart();
   }
 
   getCart(){
     this.cartService.getCarts().subscribe((res: Cart[])=>{
       this.carts = res;
+      console.log(this.carts)
       this.countTotal();
     })
   }
 
+  deleteCart(id: number){
+    this.cartService.deleteCart(id).subscribe(data => {
+      console.log(data);            
+      this.ngOnInit();
+    });
+    
+  }
+
   countTotal() {
     this.carts.forEach(item => {
-      this.productService.getDetails(item.id)
+      this.productService.getDetails(item.ProductId)
         .subscribe(data => {
-          this.products.push(data);
-          console.log(data);
-          this.total = this.total + data.Price;
+          this.dispcart = {
+            cart: item,
+            product: data
+          }
+          console.log(this.dispcart);
+          this.dispcartlist.push(this.dispcart);
         });
     });
   }
 }
+interface Dispcart{
+  cart: Cart;
+  product: Product;
+};

@@ -1,0 +1,49 @@
+section{
+    div{        
+        div{            
+            .item{
+                box-shadow: 0 3px 5px 0 rgba(0,0,0,.11);
+                padding: 5px;
+                .image{
+                    img{
+                        height: 150px;
+                        width: auto;
+                    }
+                }
+                .detail{
+                    .qty{                        
+                        font-size: 20px;  
+                        .fa{                            
+                            cursor: pointer;
+                        }                                     
+                    }
+                }
+            }
+        }
+        .price{
+            box-shadow: 0 3px 5px 0 rgba(0,0,0,.11);            
+            padding: 10px;
+            max-height: 400px;
+            .head{
+                font-size: 25px;
+                font-weight: bold;
+                color: #878787;
+            }  
+            .total{
+                font-size: 20px;
+                font-weight: bold;
+            }
+            hr{
+                width: 100%;
+            }   
+            .note{
+                color:#979797;
+            } 
+            button{
+                background: rgb(231, 74, 2);
+                font-weight: bold;
+                color: white;
+            }              
+        }
+    }
+}

@@ -21,7 +21,7 @@
       "Genre": "Historical fiction",
       "ReleaseDate": 2016,
       "Price": 340,
-      "Quantity": 3,
+      "Quantity": 0,
       "Preview": "In 1930, the American historian and philosopher Will Durant wrote that Britain’s ‘conscious and deliberate bleeding of India… [was the] greatest crime in all history’. He was not the only one to denounce the rapacity and cruelty of British rule, and his assessment was not exaggerated. ",
       "Writer": "Shashi Tharoor ",
       "Ratings": 4,
@@ -49,7 +49,7 @@
       "Genre": "Adventure",
       "ReleaseDate": 2013,
       "Price": 199,
-      "Quantity": 3,
+      "Quantity": 0,
       "Preview": "Think of the high seas and of a buccaneer ship; of a wild seaman with a sea chest full of gold; of Long John Silver; of a buried treasure and of young Jim Hawkins, the boy with the treasure map the key to it all. ",
       "Writer": "Robert Louis Stevenson ",
       "Ratings": 3,
@@ -171,15 +171,61 @@
   ],
   "Cart": [
     {
-      "id": 1,
-      "ProductId": 3,
+      "id": 19,
+      "ProductId": 4,
       "Quantity": 1
     },
     {
-      "id": 2,
-      "ProductId": 4,
-      "Quantity": 1
+      "id": 21,
+      "ProductId": 31,
+      "Quantity": 3
     }
   ],
-  "WishList": []
+  "WishList": [
+    {
+      "id": 1,
+      "ProductId": 4,
+      "IpAddress": "27.61.151.185"
+    },
+    {
+      "id": 4,
+      "ProductId": 1,
+      "IpAddress": "27.61.151.110"
+    },
+    {
+      "id": 5,
+      "ProductId": 21,
+      "IpAddress": "27.61.151.174"
+    },
+    {
+      "id": 6,
+      "ProductId": 2,
+      "IpAddress": "27.61.151.185"
+    },
+    {
+      "id": 7,
+      "ProductId": 51,
+      "IpAddress": "27.61.151.185"
+    },
+    {
+      "id": 9,
+      "ProductId": 4,
+      "IpAddress": "27.61.151.185"
+    },
+    {
+      "id": 10,
+      "ProductId": 4,
+      "IpAddress": "27.61.151.185"
+    },
+    {
+      "id": 11,
+      "ProductId": 3,
+      "IpAddress": "27.61.151.185"
+    },
+    {
+      "id": 12,
+      "ProductId": 31,
+      "IpAddress": "27.61.151.185"
+    }
+  ]
 }

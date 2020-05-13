@@ -20,20 +20,7 @@ section{
                 z-index: 8;
                 height: 270px;
                 max-width: 100% !important;
-                text-align: center;
-                .fav{
-                    position: relative;
-                    top: 10%;
-                    left: 42%;
-                    z-index: 10;
-                    padding: 10px;
-                    border-radius: 50%;
-                    background-color: white;
-                    &:hover{
-                        color: red;
-                        cursor: pointer;
-                    }
-                }
+                text-align: center;                
                 img{
                     // border-radius: 5px;
                     max-height: 240px;
@@ -60,6 +47,21 @@ section{
                 margin-top: 5px;
                 font-size: 14px;
                 color: rgba($color: #000000, $alpha: 0.6);
+            }
+        }
+        .cards-btn{
+             z-index: 6;
+            .fav{
+                position: relative;
+                
+                z-index: 10;
+                padding: 10px;
+                border-radius: 50%;
+                background-color: white;
+                &:hover{
+                    color: red;
+                    cursor: pointer;
+                }
             }
         }
     }
