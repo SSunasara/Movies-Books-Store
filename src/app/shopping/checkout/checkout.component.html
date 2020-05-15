@@ -1,74 +1,71 @@
-<section class="container mb-3">
-    <h3 class="mt-3">Order Summery</h3>
-    <div class="row mt-3">
-        <div class="col-7">
-            <div class="row item mb-3" *ngFor="let item of dispcartlist">
-                <div class="col-2 image">
-                    <img [src]="item.product.Image" [alt]="item.product.Name">
-                </div>
-                <div class="col-7 text-left pl-3 ml-3 mt-2 detail">
-                    <h5>{{ item.product.Name }}</h5>
-                    <p>Ratings : {{ item.product.Ratings | number: '1.1-2' }} <i class="fa fa-star" style="color: darkgoldenrod;"></i></p>                    
-                    <p class="qty">
-                        Quantity :
-                        <i class="fa fa-minus-circle mr-1 text-danger" (click)="subQty(item)"></i>
-                        {{ item.cart.Quantity }}                       
-                        <i class="fa fa-plus-circle ml-1 text-success" (click)="addQty(item)"></i>                        
-                    </p>                    
-                </div>
-                <div class="col-2 text-right mt-5">
-                    <p>
-                        <b> 
-                        {{ item.product.Price | currency:'INR' }} 
-                        <br>* {{ item.cart.Quantity}} 
-                        <br>
-                       {{ item.product.Price * item.cart.Quantity | currency:'INR' }} </b>                         
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="ml-5 col-4 price">
-            <span class="head">Price Details</span> 
-            <hr>
-            <div class="row p-3" style="font-size: 20px;">
-                <div class="col-8"><span>Price ( {{ count }} items ) : </span></div>
-                <div class="col-2 text-right mb-3">{{ total | currency:'INR' }}</div>
-                <div class="col-8"><span>Delivery Charges :</span></div>
-                <div class="col-2 text-right text-success">
-                    <span *ngIf="deliveryCharge > 0">{{ deliveryCharge | currency:'INR' }}</span>
-                    <span *ngIf="deliveryCharge == 0">Free</span>                                    
-                </div>
-            </div>                   
-            <hr>
-            <div class="row total">
-                <div class="col-8"><span>Total Payable </span></div>
-                <div class="col-2 text-right">{{ total | currency:'INR' }}</div>                
-            </div>
-            <button class="btn btn-lg form-control mt-4 mb-4"  data-toggle="modal" data-target="#exampleModalCenter">CheckOut</button>
-            <p class="note">Note :  If your total amount will less then {{ 1000 | currency:'INR'}}, 
-                then {{ 70 | currency:'INR' }} Delivery Charge will be apply..</p>
-        </div>
+<section class="container mt-3 mb-3">
+  <div class="card">
+    <div class="card-header">
+      <h3> Order Summary</h3>
     </div>
-</section>
+    <div class="card-body row d-flex justify-content-between">
+      <div class="col-6">
+        <h5 class="card-title">Cart Detail</h5>
+        <table class="table table-hover text-right">
+          <thead>
+            <tr>
+              <th scope="col">Sr.No</th>
+              <th scope="col">Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of dispcartlist; let i = index">
+              <th scope="row">{{ i+1 }}</th>
+              <td>{{ item.product.Name }}</td>
+              <td>{{ item.product.Category }}</td>
+              <td>{{ item.cart.Quantity }}</td>
+              <td>{{ item.cart.Quantity * item.product.Price | currency: 'INR' }}</td>
+            </tr>
+            <tr>
+              <td colspan="4"></td>
+              <td><b>Total: {{ total | currency: 'INR' }}</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">User section</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            OTP: <input type="number" class="form-control" [(ngModel)]="userOTP">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)="checkOTP()">Submit</button>
-        </div>
+      <div class="col-4">
+        <h5 class="card-title">Delivery Detail</h5>
+        <p class="card-text" style="color:rgb(121, 122, 122)">
+          <b>Name : </b>{{userdetail.name}}<br>
+          <b>EmailId : </b>{{userdetail.email}}<br>
+          <b>Address : </b>{{userdetail.address}}<br>
+          <b>Payment Mode: </b>UPI <br>
+          <b>UPI Id : </b>{{userdetail.upiId}}
+        </p>
+        <button class="btn btn-success mt-4 form-control " style="font-size: 20px;"
+        data-toggle="modal" data-target="#exampleModalCenter">Place Order <i class="fa fa-truck"></i></button>
       </div>
     </div>
+  </div>
+</section>
+
+<!--OTP Model-->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">OTP Validation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        OTP: <input type="number" class="form-control" [(ngModel)]="userOTP">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="checkOTP()">Submit</button>
+      </div>
+    </div>
+  </div>
 </div>

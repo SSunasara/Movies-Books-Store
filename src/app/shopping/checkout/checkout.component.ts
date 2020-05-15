@@ -1,3 +1,4 @@
+import { UserDetail } from './../../shared/interfaces/user-detail';
 import { map } from 'rxjs/operators';
 import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { Cart } from 'src/app/shared/interfaces/cart';
@@ -15,13 +16,12 @@ export class CheckoutComponent implements OnInit {
 
   carts: Cart[];
   total: number = 0;
-  totalPayable: number = 0;
   dispcartlist: Dispcart[] = [];
   dispcart: Dispcart;
   count = 0;
-  deliveryCharge = 0;
   OTP = 778899;
-  userOTP: number;
+  userOTP;
+  userdetail: UserDetail;
 
   constructor(
     private cartService: CartService, 
@@ -30,13 +30,8 @@ export class CheckoutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.dispcartlist = [];
-    this.total = 0;
-    this.count = 0
-    this.carts = [];
-    this.deliveryCharge = 0;
-    this.totalPayable = 0;
     this.getCart();
+    this.userdetail = JSON.parse(localStorage.getItem('UserDetails'));
   }
 
   getCart(){
@@ -59,39 +54,19 @@ export class CheckoutComponent implements OnInit {
           console.log(this.dispcart);
           this.dispcartlist.push(this.dispcart);
           this.total = this.total + (this.dispcart.cart.Quantity * this.dispcart.product.Price);
-          this.count++;
-          console.log("total" + this.total)          
+          this.count++;         
         });                           
     });   
     
   }
 
-  addQty(item: Dispcart){
-    if(item.product.Quantity > item.cart.Quantity)
-    {
-      item.cart.Quantity++;
-      this.cartService.updateCart(item.cart).subscribe((res: Cart)=>{
-        console.log(res);
-        this.ngOnInit();
-      })
-    }
-  }
-  subQty(item: Dispcart){
-    if(item.cart.Quantity > 1)
-    {
-      item.cart.Quantity--;
-      this.cartService.updateCart(item.cart).subscribe((res: Cart)=>{
-        console.log(res);
-        this.ngOnInit();
-      })
-    }
-  }
-
   checkOTP(){
-    if(this.OTP === this.userOTP)
-      console.log("Success");
+    if(this.OTP === this.userOTP){
+      alert("CheckOut Success");
+      this.router.navigate(['/']);
+    }      
     else
-      console.log("Fail");
+      alert("CheckOut Fail, Wrong OTP");
   }
 }
 interface Dispcart{

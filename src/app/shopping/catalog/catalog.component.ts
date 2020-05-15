@@ -23,21 +23,29 @@ export class CatalogComponent implements OnInit {
     private http: HttpClient
   ) { }
 
-  Products: Product[];
+  items: Product[];
   item: Cart = null;
   ipAddress = '';
   wishlist: Wishlist;
-
+  pageOfItems: Array<any>;
+  pageSize = 8;
+  p = 1;
+  collectionsize;
 
   ngOnInit(): void {
     this.getProductData();
   }
 
+  onChangePage(pageOfItems: Array<any>) {
+        this.pageOfItems = pageOfItems;
+  }
+
   getProductData(){
     this.productService.getProducts().subscribe((res: Product[]) => 
       {
-        this.Products = res;
-        console.log("Result ",this.Products);
+        this.items = res;
+        console.log("Result ",this.items);
+        this.collectionsize = res.length;
       });
   }
 
@@ -45,30 +53,65 @@ export class CatalogComponent implements OnInit {
     this.router.navigate([`./details/${id}`]);
   }
   
-  addToCart(id: number){
-    this.item = {
-      id: null,
-      ProductId : id,
-      Quantity : 1
+  addToCart(prod: Product){
+    console.log(prod);
+    try{
+      this.cartService.getCartItemByProductId(prod.id).subscribe(res => {
+        if(res.length === 0){
+          this.item = {
+            id: null,
+            ProductId : prod.id,
+            Quantity : 1
+          }
+          console.log("ToAdd", this.item);
+          this.cartService.addToCart(this.item).subscribe((res: Cart)=>{
+            prod.Quantity--;
+            this.productService.updateProduct(prod).subscribe(()=>{
+              this.item=res;
+            alert("Item is added to your cart!!!");
+            })
+            
+          });
+        }
+        else{
+          res[0].Quantity++;
+          this.cartService.updateCart(res[0]).subscribe(()=>{
+            prod.Quantity--;
+            this.productService.updateProduct(prod).subscribe(()=>{
+              alert("Quantity Increas");
+            })
+          })
+        }
+      })
     }
-    console.log("ToAdd", this.item);
-    this.cartService.addToCart(this.item).subscribe((res: Cart)=>{
-      this.item=res;
-    });
+    catch{
+      alert("Something went wrong, try again later")
+    }
   }
 
   addToWishlist(id: number){
     this.http.get("http://api.ipify.org/?format=json").subscribe((res:any)=>{
-      this.ipAddress = res.ip;     
-      this.wishlist = {
-        id: null,
-        ProductId: id,
-        IpAddress: this.ipAddress
-      }
-      console.log(this.wishlist);
-      this.wishlistService.addToWishlist(this.wishlist).subscribe((res: Wishlist)=> {
-        console.log(res);
-      })
+      this.ipAddress = res.ip;   
+      this.wishlistService.getSpecific(this.ipAddress, id).subscribe(res=>{
+        if(res.length === 0){
+          this.wishlist = {
+            id: null,
+            ProductId: id,
+            IpAddress: this.ipAddress
+          }
+          console.log(this.wishlist);
+          this.wishlistService.addToWishlist(this.wishlist).subscribe((res: Wishlist)=> {
+            console.log(res);
+            alert("Item is added to your WishList!!!");
+          })
+        }
+        else{
+          console.log(res);
+          alert("Item already added to wishlist");
+        }
+      })  
+      
     });
+    
   }
 }

@@ -64,19 +64,44 @@ export class WishlistComponent implements OnInit {
     this.wishlistService.deleteWishlist(id).subscribe(res =>{
       console.log(res);
       this.ngOnInit();
+      alert("Item is Deleted from your wishlist!!!");
     });
   }
 
-  addToCart(id: number){
-    this.item = {
-      id: null,
-      ProductId : id,
-      Quantity : 1
+  addToCart(prod: Product){
+    console.log(prod);
+    try{
+      this.cartService.getCartItemByProductId(prod.id).subscribe(res => {
+        if(res.length === 0){
+          this.item = {
+            id: null,
+            ProductId : prod.id,
+            Quantity : 1
+          }
+          console.log("ToAdd", this.item);
+          this.cartService.addToCart(this.item).subscribe((res: Cart)=>{
+            this.item=res;
+            alert("Item is added to your cart!!!");
+          });
+        }
+        else{
+          res[0].Quantity++;
+          this.cartService.updateCart(res[0]).subscribe(()=>{
+            prod.Quantity--;
+            this.productService.updateProduct(prod).subscribe(()=>{
+              alert("Quantity Increas");
+            })
+          })
+        }
+      })
     }
-    console.log("ToAdd", this.item);
-    this.cartService.addToCart(this.item).subscribe((res: Cart)=>{
-      this.item=res;
-    });
+    catch{
+      alert("Something went wrong, try again later")
+    }
+  }
+  
+  goToDetails(id: number){
+    this.router.navigate([`./details/${id}`]);
   }
 }
 

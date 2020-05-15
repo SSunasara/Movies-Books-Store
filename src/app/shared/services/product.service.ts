@@ -37,6 +37,12 @@ export class ProductService {
     );
   }
 
+  updateProduct(item: Product){
+    return this.http.put<Product>(this.baseURL + "Products" + `/${item.id}`, item, this.headerOption).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   getAllMovies(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseURL}/products`, this.headerOption).pipe(
       map(data => data.filter(items => items.Category === 'Movie'))
@@ -48,4 +54,5 @@ export class ProductService {
       map(data => data.filter(items => items.Category === 'Book'))
     );
   }
+
 }

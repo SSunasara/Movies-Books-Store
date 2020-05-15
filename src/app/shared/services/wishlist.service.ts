@@ -41,4 +41,12 @@ export class WishlistService {
       catchError(this.handleError)
     );
   }
+
+  getSpecific(ip: string, id: number): Observable<Wishlist[]>{
+    return this.http.get<Wishlist[]>(this.baseURL + "WishList", this.headerOption).pipe(
+      map(data => data.filter(items => items.ProductId ===id).
+      filter(item => item.IpAddress === ip)),
+      catchError(this.handleError)
+    );
+  }
 }

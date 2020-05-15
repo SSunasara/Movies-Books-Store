@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { Wishlist } from 'src/app/shared/interfaces/wishlist';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-detals',
@@ -20,7 +21,8 @@ export class DetalsComponent implements OnInit {
     private activatedRoute: ActivatedRoute, 
     private cartService: CartService,
     private wishlistService: WishlistService,
-    private http: HttpClient
+    private http: HttpClient,
+    private toastr: ToastrService
     ) { }
     
   id: number;
@@ -47,29 +49,63 @@ export class DetalsComponent implements OnInit {
   }
 
   addToCart(id: number){
-    this.item = {
-      id: null,
-      ProductId : id,
-      Quantity : 1
+    try{
+      this.cartService.getCartItemByProductId(id).subscribe(res => {
+        if(res.length === 0){
+          this.item = {
+            id: null,
+            ProductId : id,
+            Quantity : 1
+          }
+          console.log("ToAdd", this.item);
+          this.cartService.addToCart(this.item).subscribe((res: Cart)=>{
+            this.details.Quantity--;
+            this.productService.updateProduct(this.details).subscribe(()=>{
+              alert("Added to cart");
+              this.toastr.success('Hello world!', 'Toastr fun!');
+            })
+          });
+        }
+        else{
+          res[0].Quantity++;
+          this.cartService.updateCart(res[0]).subscribe(()=>{
+            this.details.Quantity--;
+            this.productService.updateProduct(this.details).subscribe(()=>{
+              alert("Quantity Increas");
+              this.toastr.success('Hello world!', 'Toastr fun!');
+            })
+          })
+        }
+      })
     }
-    console.log("ToAdd", this.item);
-    this.cartService.addToCart(this.item).subscribe((res: Cart)=>{
-      this.item=res;
-    });
+    catch{
+      alert("Something went wrong, try again later")
+    }
+    
   }
 
   addToWishlist(id: number){
     this.http.get("http://api.ipify.org/?format=json").subscribe((res:any)=>{
-      this.ipAddress = res.ip;     
-      this.wishlist = {
-        id: null,
-        ProductId: id,
-        IpAddress: this.ipAddress
-      }
-      console.log(this.wishlist);
-      this.wishlistService.addToWishlist(this.wishlist).subscribe((res: Wishlist)=> {
-        console.log(res);
-      })
+      this.ipAddress = res.ip;   
+      this.wishlistService.getSpecific(this.ipAddress, id).subscribe(res=>{
+        if(res.length === 0){
+          this.wishlist = {
+            id: null,
+            ProductId: id,
+            IpAddress: this.ipAddress
+          }
+          console.log(this.wishlist);
+          this.wishlistService.addToWishlist(this.wishlist).subscribe((res: Wishlist)=> {
+            console.log(res);
+            alert("Item is added to your WishList!!!");
+          })
+        }
+        else{
+          console.log(res);
+          alert("Item already added to wishlist");
+        }
+      })  
+      
     });
     
   }

@@ -1,4 +1,4 @@
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Cart } from './../interfaces/cart';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -45,5 +45,10 @@ export class CartService {
     return this.http.put<Cart>(this.baseURL + "Cart" + `/${item.id}`, item, this.headerOption).pipe(
       catchError(this.handleError)
     );
+  }
+
+  getCartItemByProductId(id: number): Observable<Cart[]> {
+    return this.http.get<Cart[]>(this.baseURL + "Cart", this.headerOption)
+      .pipe(map(data => data.filter(item => item.ProductId === id)));
   }
 }

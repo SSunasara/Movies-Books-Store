@@ -1,7 +1,8 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from './../shared/services/product.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from "ngx-pagination";
 
 import { ShoppingRoutingModule } from './shopping-routing.module';
 import { ShoppingComponent } from './shopping.component';
@@ -12,7 +13,6 @@ import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 
-
 @NgModule({
   declarations: [
     ShoppingComponent, 
@@ -20,12 +20,15 @@ import { CheckoutComponent } from './checkout/checkout.component';
     NavbarComponent, 
     DetalsComponent, 
     CartComponent, 
-    WishlistComponent, CheckoutComponent
+    WishlistComponent, 
+    CheckoutComponent,    
   ],
   imports: [
     CommonModule,
     ShoppingRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers:[
     ProductService

@@ -7,7 +7,7 @@
       "Genre": "Historical fiction",
       "ReleaseDate": 2008,
       "Price": 568,
-      "Quantity": 4,
+      "Quantity": 9,
       "Preview": "Ramachandra Guha’s hugely acclaimed book tells the full story - the pain and the struggle, the humiliations and the glories - of the world’s largest and least likely democracy.",
       "Writer": "Ramachandra Guha",
       "Ratings": 4,
@@ -21,7 +21,7 @@
       "Genre": "Historical fiction",
       "ReleaseDate": 2016,
       "Price": 340,
-      "Quantity": 0,
+      "Quantity": 3,
       "Preview": "In 1930, the American historian and philosopher Will Durant wrote that Britain’s ‘conscious and deliberate bleeding of India… [was the] greatest crime in all history’. He was not the only one to denounce the rapacity and cruelty of British rule, and his assessment was not exaggerated. ",
       "Writer": "Shashi Tharoor ",
       "Ratings": 4,
@@ -35,7 +35,7 @@
       "Genre": "Adventure",
       "ReleaseDate": 1999,
       "Price": 171,
-      "Quantity": 3,
+      "Quantity": 5,
       "Preview": "A bank of clouds was assembling on the not-so-distant horizon, but journalist-mountaineer Jon Krakauer, standing on the summit of Mt. Everest, saw nothing that suggested that a murderous storm was bearing down. He was wrong. ",
       "Writer": "Jon Krakauer",
       "Ratings": 4,
@@ -49,7 +49,7 @@
       "Genre": "Adventure",
       "ReleaseDate": 2013,
       "Price": 199,
-      "Quantity": 0,
+      "Quantity": 6,
       "Preview": "Think of the high seas and of a buccaneer ship; of a wild seaman with a sea chest full of gold; of Long John Silver; of a buried treasure and of young Jim Hawkins, the boy with the treasure map the key to it all. ",
       "Writer": "Robert Louis Stevenson ",
       "Ratings": 3,
@@ -63,7 +63,7 @@
       "Genre": "Horror",
       "ReleaseDate": 2000,
       "Price": 500,
-      "Quantity": 3,
+      "Quantity": 2,
       "Preview": "House of Leaves is the debut novel by American author Mark Z. Danielewski, published in March 2000 by Pantheon Books. A bestseller, it has been translated into a number of languages, and is followed by a companion piece, The Whalestoe Letters.  ",
       "Writer": "Mark Z. Danielewski",
       "Ratings": 4,
@@ -78,7 +78,7 @@
       "Genre": "Action",
       "ReleaseDate": "16/01/2020",
       "Price": 300,
-      "Quantity": 3,
+      "Quantity": 4,
       "Ratings": 6.7,
       "Director": "Adil EI Arbi",
       "Cast": [
@@ -98,7 +98,7 @@
       "Genre": "Adventure",
       "ReleaseDate": "7/11/2015",
       "Price": 250,
-      "Quantity": 4,
+      "Quantity": 3,
       "Ratings": 8,
       "Director": "Ridley Scott",
       "Cast": [
@@ -117,7 +117,7 @@
       "Genre": "Biography",
       "ReleaseDate": "07/10/2019",
       "Price": 350,
-      "Quantity": 4,
+      "Quantity": 5,
       "Ratings": 6.6,
       "Director": "Tom Harper",
       "Cast": [
@@ -171,17 +171,12 @@
   ],
   "Cart": [
     {
-      "id": 19,
-      "ProductId": 4,
+      "id": 1,
+      "ProductId": 2,
       "Quantity": 1
     },
     {
-      "id": 21,
-      "ProductId": 31,
-      "Quantity": 3
-    },
-    {
-      "id": 22,
+      "id": 2,
       "ProductId": 3,
       "Quantity": 1
     }
@@ -256,6 +251,41 @@
       "id": 19,
       "ProductId": 66,
       "IpAddress": "114.31.173.80"
+    },
+    {
+      "id": 20,
+      "ProductId": 1,
+      "IpAddress": "27.61.226.158"
+    },
+    {
+      "id": 21,
+      "ProductId": 2,
+      "IpAddress": "27.61.226.158"
+    },
+    {
+      "id": 22,
+      "ProductId": 3,
+      "IpAddress": "27.61.194.183"
+    },
+    {
+      "id": 23,
+      "ProductId": 4,
+      "IpAddress": "27.61.194.183"
+    },
+    {
+      "id": 25,
+      "ProductId": 21,
+      "IpAddress": "27.61.194.183"
+    },
+    {
+      "id": 26,
+      "ProductId": 31,
+      "IpAddress": "27.61.194.183"
+    },
+    {
+      "id": 27,
+      "ProductId": 2,
+      "IpAddress": "27.61.194.183"
     }
   ]
 }
