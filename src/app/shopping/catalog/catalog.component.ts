@@ -7,6 +7,7 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Router } from '@angular/router';
 import { Wishlist } from 'src/app/shared/interfaces/wishlist';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-catalog',
@@ -20,7 +21,8 @@ export class CatalogComponent implements OnInit {
     private router: Router, 
     private cartService: CartService,
     private wishlistService: WishlistService,
-    private http: HttpClient
+    private http: HttpClient,
+    private toastr: ToastrService
   ) { }
 
   items: Product[];
@@ -68,7 +70,7 @@ export class CatalogComponent implements OnInit {
             prod.Quantity--;
             this.productService.updateProduct(prod).subscribe(()=>{
               this.item=res;
-            alert("Item is added to your cart!!!");
+              this.toastr.success('Added to cart');
             })
             
           });
@@ -78,40 +80,44 @@ export class CatalogComponent implements OnInit {
           this.cartService.updateCart(res[0]).subscribe(()=>{
             prod.Quantity--;
             this.productService.updateProduct(prod).subscribe(()=>{
-              alert("Quantity Increas");
+              this.toastr.success('Increas Quantity');
             })
           })
         }
       })
     }
     catch{
-      alert("Something went wrong, try again later")
+      this.toastr.error("Something went wrong, try again later")
     }
   }
 
   addToWishlist(id: number){
-    this.http.get("http://api.ipify.org/?format=json").subscribe((res:any)=>{
-      this.ipAddress = res.ip;   
-      this.wishlistService.getSpecific(this.ipAddress, id).subscribe(res=>{
-        if(res.length === 0){
-          this.wishlist = {
-            id: null,
-            ProductId: id,
-            IpAddress: this.ipAddress
+    try{
+      this.http.get("http://api.ipify.org/?format=json").subscribe((res:any)=>{
+        this.ipAddress = res.ip;   
+        this.wishlistService.getSpecific(this.ipAddress, id).subscribe(res=>{
+          if(res.length === 0){
+            this.wishlist = {
+              id: null,
+              ProductId: id,
+              IpAddress: this.ipAddress
+            }
+            console.log(this.wishlist);
+            this.wishlistService.addToWishlist(this.wishlist).subscribe((res: Wishlist)=> {
+              console.log(res);
+              this.toastr.success('Added to your wishlist');
+            })
           }
-          console.log(this.wishlist);
-          this.wishlistService.addToWishlist(this.wishlist).subscribe((res: Wishlist)=> {
+          else{
             console.log(res);
-            alert("Item is added to your WishList!!!");
-          })
-        }
-        else{
-          console.log(res);
-          alert("Item already added to wishlist");
-        }
-      })  
-      
-    });
-    
+            this.toastr.success('Item already added to wishlist');
+          }
+        })  
+        
+      });
+    }
+    catch{
+      this.toastr.error("Something went wrong, try again later")
+    }
   }
 }

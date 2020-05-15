@@ -61,8 +61,8 @@ export class DetalsComponent implements OnInit {
           this.cartService.addToCart(this.item).subscribe((res: Cart)=>{
             this.details.Quantity--;
             this.productService.updateProduct(this.details).subscribe(()=>{
-              alert("Added to cart");
-              this.toastr.success('Hello world!', 'Toastr fun!');
+              //alert("Added to cart");
+              this.toastr.success('Added to cart');
             })
           });
         }
@@ -71,8 +71,7 @@ export class DetalsComponent implements OnInit {
           this.cartService.updateCart(res[0]).subscribe(()=>{
             this.details.Quantity--;
             this.productService.updateProduct(this.details).subscribe(()=>{
-              alert("Quantity Increas");
-              this.toastr.success('Hello world!', 'Toastr fun!');
+              this.toastr.success('Increas Quantity');
             })
           })
         }
@@ -97,12 +96,12 @@ export class DetalsComponent implements OnInit {
           console.log(this.wishlist);
           this.wishlistService.addToWishlist(this.wishlist).subscribe((res: Wishlist)=> {
             console.log(res);
-            alert("Item is added to your WishList!!!");
+            this.toastr.success("Item is added to your WishList!!!");
           })
         }
         else{
           console.log(res);
-          alert("Item already added to wishlist");
+          this.toastr.info('Already in the WishList')
         }
       })  
       

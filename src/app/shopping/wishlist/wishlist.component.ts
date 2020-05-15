@@ -7,6 +7,7 @@ import { WishlistService } from './../../shared/services/wishlist.service';
 import { Component, OnInit } from '@angular/core';
 import { Wishlist } from 'src/app/shared/interfaces/wishlist';
 import { Cart } from 'src/app/shared/interfaces/cart';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-wishlist',
@@ -20,7 +21,8 @@ export class WishlistComponent implements OnInit {
     private http: HttpClient,
     private productService: ProductService,
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService,
+    private toastr: ToastrService
   ) { }
 
   wishlist: Wishlist[];
@@ -64,7 +66,7 @@ export class WishlistComponent implements OnInit {
     this.wishlistService.deleteWishlist(id).subscribe(res =>{
       console.log(res);
       this.ngOnInit();
-      alert("Item is Deleted from your wishlist!!!");
+      this.toastr.error('Remove item from your WishList!!!')
     });
   }
 
@@ -81,7 +83,7 @@ export class WishlistComponent implements OnInit {
           console.log("ToAdd", this.item);
           this.cartService.addToCart(this.item).subscribe((res: Cart)=>{
             this.item=res;
-            alert("Item is added to your cart!!!");
+            this.toastr.success('Added to cart');
           });
         }
         else{
@@ -89,7 +91,7 @@ export class WishlistComponent implements OnInit {
           this.cartService.updateCart(res[0]).subscribe(()=>{
             prod.Quantity--;
             this.productService.updateProduct(prod).subscribe(()=>{
-              alert("Quantity Increas");
+              this.toastr.success('Increas Quantity');
             })
           })
         }

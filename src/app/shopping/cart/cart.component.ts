@@ -6,6 +6,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/shared/interfaces/product';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -29,7 +30,8 @@ export class CartComponent implements OnInit {
     private cartService: CartService, 
     private productService: ProductService, 
     private router: Router,
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -127,7 +129,7 @@ export class CartComponent implements OnInit {
       })
     }
     else{
-      alert("No More Quantity Available!!!")
+      this.toastr.warning('No more Quantity Available!!');
     }
   }
   subQty(item: Dispcart){
@@ -153,15 +155,9 @@ export class CartComponent implements OnInit {
     this.productService.updateProduct(item.product).subscribe(()=>{
       this.cartService.deleteCart(item.cart.id).subscribe(()=>{
         this.ngOnInit();
-        alert("Item is Deleted from your Cart!!!");
+        this.toastr.error('Item is Deleted from your Cart!!!')
       });
     })
-    // this.cartService.deleteCart(id).subscribe(data => {
-    //   console.log(data);            
-    //   this.ngOnInit();
-    //   alert("Item is Deleted from your Cart!!!");
-    // });
-    
   }
 }
 interface Dispcart{

@@ -8,11 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { Error404Component } from './error404/error404.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
@@ -20,7 +22,10 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right'
+    })
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

@@ -6,6 +6,7 @@ import { CartService } from 'src/app/shared/services/cart.service';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/shared/interfaces/product';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-checkout',
@@ -26,7 +27,8 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private cartService: CartService, 
     private productService: ProductService, 
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -62,11 +64,11 @@ export class CheckoutComponent implements OnInit {
 
   checkOTP(){
     if(this.OTP === this.userOTP){
-      alert("CheckOut Success");
+      this.toastr.success("CheckOut Success");
       this.router.navigate(['/']);
     }      
     else
-      alert("CheckOut Fail, Wrong OTP");
+      this.toastr.error("CheckOut Fail, Wrong OTP");
   }
 }
 interface Dispcart{
