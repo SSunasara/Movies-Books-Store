@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { Cart } from 'src/app/shared/interfaces/cart';
 import { CartService } from 'src/app/shared/services/cart.service';
 import { ProductService } from 'src/app/shared/services/product.service';
@@ -14,10 +15,13 @@ export class CheckoutComponent implements OnInit {
 
   carts: Cart[];
   total: number = 0;
+  totalPayable: number = 0;
   dispcartlist: Dispcart[] = [];
   dispcart: Dispcart;
   count = 0;
   deliveryCharge = 0;
+  OTP = 778899;
+  userOTP: number;
 
   constructor(
     private cartService: CartService, 
@@ -31,6 +35,7 @@ export class CheckoutComponent implements OnInit {
     this.count = 0
     this.carts = [];
     this.deliveryCharge = 0;
+    this.totalPayable = 0;
     this.getCart();
   }
 
@@ -38,10 +43,12 @@ export class CheckoutComponent implements OnInit {
     this.cartService.getCarts().subscribe((res: Cart[])=>{
       this.carts = res;
       console.log(this.carts)
-      this.countTotal();
+      this.countTotal();      
+      
     })
   }
-  countTotal() {
+
+  countTotal(){
     this.carts.forEach(item => {
       this.productService.getDetails(item.ProductId)
         .subscribe(data => {
@@ -53,17 +60,13 @@ export class CheckoutComponent implements OnInit {
           this.dispcartlist.push(this.dispcart);
           this.total = this.total + (this.dispcart.cart.Quantity * this.dispcart.product.Price);
           this.count++;
-        });
-      if(this.total < 1000)
-      {
-        this.deliveryCharge = 70;
-      }
-        
-    });
+          console.log("total" + this.total)          
+        });                           
+    });   
+    
   }
 
   addQty(item: Dispcart){
-    console.log("add",item.cart);
     if(item.product.Quantity > item.cart.Quantity)
     {
       item.cart.Quantity++;
@@ -72,10 +75,8 @@ export class CheckoutComponent implements OnInit {
         this.ngOnInit();
       })
     }
-    console.log("add",item.cart);
   }
   subQty(item: Dispcart){
-    console.log("sub", item.cart);
     if(item.cart.Quantity > 1)
     {
       item.cart.Quantity--;
@@ -84,7 +85,13 @@ export class CheckoutComponent implements OnInit {
         this.ngOnInit();
       })
     }
-    console.log("sub", item.cart);
+  }
+
+  checkOTP(){
+    if(this.OTP === this.userOTP)
+      console.log("Success");
+    else
+      console.log("Fail");
   }
 }
 interface Dispcart{

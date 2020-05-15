@@ -28,6 +28,7 @@ export class CatalogComponent implements OnInit {
   ipAddress = '';
   wishlist: Wishlist;
 
+
   ngOnInit(): void {
     this.getProductData();
   }

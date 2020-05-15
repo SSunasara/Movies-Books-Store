@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { ProductService } from './../shared/services/product.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -23,7 +24,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
   ],
   imports: [
     CommonModule,
-    ShoppingRoutingModule
+    ShoppingRoutingModule,
+    FormsModule
   ],
   providers:[
     ProductService

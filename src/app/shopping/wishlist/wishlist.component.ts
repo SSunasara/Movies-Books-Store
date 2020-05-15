@@ -29,6 +29,10 @@ export class WishlistComponent implements OnInit {
   item: Cart;
 
   ngOnInit(): void {
+    this.wishlist = [];
+    this.ipAddress = "";
+    this.dispWishlist = [];
+    this.item = null;
     this.getIpAddress();
   }
 
@@ -59,8 +63,8 @@ export class WishlistComponent implements OnInit {
   deleteWishlist(id: number){
     this.wishlistService.deleteWishlist(id).subscribe(res =>{
       console.log(res);
+      this.ngOnInit();
     });
-    this.router.navigate(['wishlist']);
   }
 
   addToCart(id: number){
